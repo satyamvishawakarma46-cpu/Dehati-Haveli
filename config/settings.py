@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "change-this-secret-key-before-production"
 DEBUG = True
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["dehati-haveli.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
