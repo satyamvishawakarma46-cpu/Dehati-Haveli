@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Order Placed | Dehati Haveli{% endblock %}
+{% block content %}
+<section class="page success">
+    <div class="success-box">
+        <h1>🎉 Order Placed!</h1>
+        <p>Order Number: <strong>#{{ order.id }}</strong></p>
+        <p>Total: <strong>₹{{ order.total }}</strong></p>
+        <p>Hum aapke order ko jaldi process karenge.</p>
+        {% if whatsapp_url %}
+        <a class="btn" href="{{ whatsapp_url }}" target="_blank">Send Order on WhatsApp</a>
+        {% endif %}
+        <a class="btn outline dark" href="{% url 'home' %}">Back to Home</a>
+    </div>
+</section>
+{% endblock %}

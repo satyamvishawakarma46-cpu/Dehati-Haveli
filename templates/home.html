@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% block title %}Dehati Haveli | Home{% endblock %}
+{% block content %}
+
+<section class="hero">
+    <div>
+        <p class="badge">शुद्ध शाकाहारी</p>
+        <h1>Dehati Haveli</h1>
+        <h2>Traditional Taste, Royal Experience</h2>
+        <p>देसी स्वाद • पारंपरिक अंदाज़ • परिवार के साथ खास अनुभव</p>
+        <a class="btn" href="#menu">View Menu</a>
+        <a class="btn outline" href="tel:9792197857">Call Now</a>
+    </div>
+</section>
+
+<section id="special">
+    <div class="section-title">
+        <h2>Special Dishes</h2>
+        <p>हमारी खास पसंद</p>
+    </div>
+    <div class="cards">
+        <div class="special-card"><h3>मटका दाल</h3><strong>₹180</strong><p>Traditional desi dal</p></div>
+        <div class="special-card"><h3>कड़ाई पनीर</h3><strong>₹280</strong><p>Rich & spicy paneer</p></div>
+        <div class="special-card"><h3>स्पेशल पोहा</h3><strong>₹100</strong><p>Fresh breakfast</p></div>
+        <div class="special-card"><h3>रस मलाई</h3><strong>₹50</strong><p>Sweet special</p></div>
+    </div>
+</section>
+
+<section id="menu">
+    <div class="section-title">
+        <h2>Our Menu</h2>
+        <p>Fresh • Pure • Vegetarian</p>
+    </div>
+
+    {% for category in categories %}
+    <div class="category">
+        <h3>{{ category.name }}</h3>
+        <div class="menu-grid">
+            {% for item in category.items.all %}
+            {% if item.available %}
+            <div class="menu-item">
+                {% if item.image_url %}
+                    <img src="{{ item.image_url }}" alt="{{ item.name }}">
+                {% endif %}
+                <div class="menu-info">
+                    <div>
+                        <h4>{{ item.name }}</h4>
+                        {% if item.description %}<p>{{ item.description }}</p>{% endif %}
+                    </div>
+                    <strong>₹{{ item.price }}</strong>
+                </div>
+                <a class="add-btn" href="{% url 'add_to_cart' item.id %}">+ Add</a>
+            </div>
+            {% endif %}
+            {% empty %}
+            <p>Menu items admin panel se add karein.</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% empty %}
+        <p class="center">Admin panel me categories aur menu items add karein.</p>
+    {% endfor %}
+</section>
+
+<section id="about" class="about">
+    <div>
+        <h2>About Dehati Haveli</h2>
+        <p>
+            Dehati Haveli mein aapko milega ghar jaisa desi swaad,
+            shuddh vegetarian food aur family-friendly environment.
+        </p>
+    </div>
+    <div class="about-box">
+        <h3>100% Vegetarian</h3>
+        <p>Fresh Ingredients</p>
+        <p>Traditional Taste</p>
+        <p>Royal Experience</p>
+    </div>
+</section>
+
+<section class="contact">
+    <h2>Contact</h2>
+    <p>📞 9792197857</p>
+    <p>📍 Apna restaurant address yahan add karein</p>
+    <a class="btn" href="tel:9792197857">Call Now</a>
+</section>
+
+{% endblock %}

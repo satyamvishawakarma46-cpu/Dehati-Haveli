@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Cart | Dehati Haveli{% endblock %}
+{% block content %}
+<section class="page">
+    <h1>Your Cart</h1>
+    {% if items %}
+        <div class="cart-box">
+            {% for row in items %}
+            <div class="cart-row">
+                <div>
+                    <h3>{{ row.item.name }}</h3>
+                    <p>₹{{ row.item.price }} × {{ row.qty }}</p>
+                </div>
+                <strong>₹{{ row.subtotal }}</strong>
+                <a class="remove" href="{% url 'remove_from_cart' row.item.id %}">Remove</a>
+            </div>
+            {% endfor %}
+            <h2 class="total">Total: ₹{{ total }}</h2>
+            <a class="btn" href="{% url 'checkout' %}">Proceed to Checkout</a>
+        </div>
+    {% else %}
+        <p>Cart empty hai.</p>
+        <a class="btn" href="{% url 'home' %}#menu">Browse Menu</a>
+    {% endif %}
+</section>
+{% endblock %}

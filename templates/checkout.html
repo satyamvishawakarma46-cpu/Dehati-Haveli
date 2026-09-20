@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Checkout | Dehati Haveli{% endblock %}
+{% block content %}
+<section class="page">
+    <h1>Checkout</h1>
+    <div class="checkout">
+        <form method="post">
+            {% csrf_token %}
+            <label>Name</label>
+            <input name="name" required>
+            <label>Phone</label>
+            <input name="phone" required>
+            <label>Delivery / Pickup Address</label>
+            <textarea name="address" required></textarea>
+            <label>Special Note</label>
+            <textarea name="notes"></textarea>
+            <button class="btn" type="submit">Place Order</button>
+        </form>
+
+        <div class="summary">
+            <h2>Order Summary</h2>
+            {% for row in items %}
+                <p>{{ row.item.name }} × {{ row.qty }} — ₹{{ row.subtotal }}</p>
+            {% endfor %}
+            <hr>
+            <h2>Total: ₹{{ total }}</h2>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dehati Haveli{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<nav class="navbar">
+    <a class="brand" href="{% url 'home' %}">देहाती <span>हवेली</span></a>
+    <div class="navlinks">
+        <a href="{% url 'home' %}#menu">Menu</a>
+        <a href="{% url 'home' %}#about">About</a>
+        <a href="{% url 'cart' %}">🛒 Cart</a>
+        {% if user.is_authenticated %}
+            <span class="user">Hi, {{ user.username }}</span>
+            <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+            <a href="{% url 'login' %}">Login</a>
+            <a href="{% url 'signup' %}">Signup</a>
+        {% endif %}
+    </div>
+</nav>
+
+{% if messages %}
+<div class="messages">
+    {% for message in messages %}
+        <div class="message">{{ message }}</div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% block content %}{% endblock %}
+
+<footer>
+    <h3>Dehati Haveli</h3>
+    <p>Traditional Taste, Royal Experience</p>
+    <p>📞 9792197857</p>
+    <p>© 2026 Dehati Haveli</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Signup | Dehati Haveli{% endblock %}
+{% block content %}
+<section class="page auth">
+    <form method="post">
+        {% csrf_token %}
+        <h1>Create Account</h1>
+        <input name="username" placeholder="Username" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <button class="btn" type="submit">Signup</button>
+    </form>
+</section>
+{% endblock %}
